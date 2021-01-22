@@ -4,6 +4,7 @@ import org.zenframework.z8.base.table.value.FileField;
 import org.zenframework.z8.base.table.value.Link;
 import org.zenframework.z8.base.table.value.StringExpression;
 import org.zenframework.z8.base.table.value.StringField;
+import org.zenframework.z8.base.table.value.TextField;
 
 /*
  * Атрибут [generatable] указывает Z8, что таблица, которую описывает класс,
@@ -44,12 +45,25 @@ public class Document extends Table {
 	/* Максимальная длина значения поля email */
 	email.length = 50;
 
-	[displayName "Документ"]
+	[name "xml"]
+	[displayName "XML"]
+	public TextField xml;
+
+	[name "Youtube"]
+    [displayName "Youtube"]
+    public StringField youtube;
+    youtube.length = 100;
+
+    [displayName "Audio"]
+    public StringExpression audio = doc;
+
+    [displayName "Документ"]
 	/*
 	 * StringExpression - строковое вычисляемое выражение.
 	 * Z8 генерирует SQL-выражение в соответствии с указанным значением выражения BL
 	 */
 	public StringExpression fullName = name + " - " + status.name + " (" + user.name + ")";
+
 
 	/*
 	 * virtual - модфикатор мметода, указывающий на возможность его переопределения
